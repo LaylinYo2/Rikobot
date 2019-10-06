@@ -24,7 +24,7 @@ module.exports.run = async (bot, message, args) => {
     let banChannel = message.guild.channels.find(c => c.name === "modlog")
     if(!banChannel) return message.channel.send("Couldn't find log channel.");
 
-    banUser.send(`You've been **permanently banned** from **${message.guild.name}** for: **${banReason}**. If you feel this action is unjustified, contact @Huseey#6669 (<@215199639027056640>).`).then(function() {
+    banUser.send(`You've been **permanently banned** from **${message.guild.name}** for: **${banReason}**. If you feel this action is unjustified, contact @knobbelboy#8421 (<@177438019085795328>) or @Huseey#6669 (<@215199639027056640>).`).then(function() {
         message.guild.member(banUser).ban(banReason);
         console.log(`${banUser.tag} has been notified about their ban.`);
     }).catch(function() {
