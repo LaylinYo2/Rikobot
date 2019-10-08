@@ -5,7 +5,7 @@ const PREFIX = '>';
 
 module.exports.run = async (bot, message, args) => {
    
-    if(!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send("Insufficient permission.");
+    if(!message.member.hasPermission("KICK_MEMBERS")) return message.channel.send("Insufficient permission.");
     let banUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
     if(!banUser) return message.channel.send("Couldn't find user | **Usage:** `>yeet @user <reason>`");
     if(banUser.hasPermission("ADMINISTRATOR")) return message.channel.send(":clown: You tried. :clown:");
@@ -21,19 +21,15 @@ module.exports.run = async (bot, message, args) => {
     .setTimestamp()
     .setFooter( `ID: ${banUser.id}`)
 
-    let banChannel = message.guild.channels.find(c => c.name === "modlogs")
+    let banChannel = message.guild.channels.find(c => c.name === "modlog")
     if(!banChannel) return message.channel.send("Couldn't find log channel.");
 
-    banUser.send(`You've been **permanently banned** from **${message.guild.name}** for: **${banReason}**. If you feel this action is unjustified, contact @Huseey#6669 (<@215199639027056640>).`).catch(err => console.log(err))
-    message.guild.member(banUser).ban(banReason);
+    banUser.send(`You've been **kicked** from **${message.guild.name}** for: **${banReason}**. Use this invite to join back -> https://discord.gg/knobbelboy`).catch(err => console.log(err))
+    message.guild.member(banUser).kick(banReason);
     banChannel.send(banLogEmbed).then(() => {
         message.delete()
         message.channel.send(`${banUser} has been **YEETED**.`)
     });
-
-    let wallofshame = message.guild.channels.find(c => c.name === "wall-of-shame");
-  
-    wallofshame.send(`${banUser} was **banned** by ${message.author} for **${banReason}**.`)
 }
 
 
