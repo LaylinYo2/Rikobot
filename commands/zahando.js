@@ -8,7 +8,7 @@ module.exports.run = async (bot, message, args) => {
         message.channel.send(`Scraped away **${args[0]}** messages.`).then(msg => msg.delete(5000));
         
                 let zaHando = new Discord.RichEmbed()
-        .setAuthor(message.guild.name, message.guild.displayAvatarURL)
+        .setAuthor(message.guild.name, message.guild.displayAvatar)
         .setDescription(`**Bulk Delete issued in ${message.channel}**\n**${args[0]} messages deleted.**`)
         .setTimestamp()
         .setColor("#e74c3c")
