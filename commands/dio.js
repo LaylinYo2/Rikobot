@@ -5,6 +5,7 @@ const ms = require("ms");
 module.exports.run = async (bot, message, args) => {
     
     if(!bot.lockit) bot.lockit = []
+    if(!message.member.hasPermission("KICK_MEMBERS")) return message.channel.send("Insufficient permission.");
     let time = args.join(' ');
     let validUnlocks = ['end', 'timeout'];
     if (!time) return message.channel.send('Specify a duration. | **Usage:** `>dio <duration>`')
