@@ -2,10 +2,11 @@ const Discord = require("discord.js");
 const config = require("../config.json");
 const ms = require("ms");
 
-module.exports.run = async(bot, message, args) => {
+module.exports.run = async (bot, message, args) => {
 
-    if(!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send("Insufficient permission.");
+    if(!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send("Insufficient permission.");
     let bannedMember = await bot.fetchUser(args[0])
+    console.log(bannedMember);
         if(!bannedMember) return message.channel.send ("User not found. | **Usage:** `>unban @user <reason>`")
     let bannedReason = args.slice(1).join(" ")
         if(!bannedReason) return message.channel.send ("Specify a reason | **Usage:** `>unban @user <reason>`")

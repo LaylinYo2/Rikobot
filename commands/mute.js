@@ -32,7 +32,7 @@ module.exports.run = async (bot, message, args) => {
     }
   }
   let length = args[1];
-  if(!length) return message.channel.send("**Usage:** `>mute @user <time> <reason>`");
+  if(!length) return message.channel.send("Specify a length | **Usage:** `>mute @user <time> <reason>`");
   message.delete().catch();
 
   let muteLogEmbed = new Discord.RichEmbed()

@@ -24,12 +24,16 @@ module.exports.run = async (bot, message, args) => {
     let banChannel = message.guild.channels.find(c => c.name === "modlog")
     if(!banChannel) return message.channel.send("Couldn't find log channel.");
 
-    banUser.send(`You've been **kicked** from **${message.guild.name}** for: **${banReason}**. Use this invite to join back -> https://discord.gg/knobbelboy`).catch(err => console.log(err))
+    banUser.user.send(`You've been **kicked** from **${message.guild.name}** for: **${banReason}**. Use this invite to join back -> https://discord.gg/knobbelboy`).catch(err => console.log(err))
     message.guild.member(banUser).kick(banReason);
     banChannel.send(banLogEmbed).then(() => {
         message.delete()
         message.channel.send(`${banUser} has been **YEETED**.`)
     });
+
+    let wallofshame = message.guild.channels.find(c => c.name === "wall-of-shame");
+  
+    wallofshame.send(`${banUser} was **yeeted** by ${message.author} for **${banReason}**.`)
 }
 
 

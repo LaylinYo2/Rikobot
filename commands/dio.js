@@ -4,11 +4,12 @@ const ms = require("ms");
 
 module.exports.run = async (bot, message, args) => {
     
+    if(!message.member.hasPermission("KICK_MEMBERS")) return message.channel.send("You are not worthy.")
+    
     if(!bot.lockit) bot.lockit = []
-    if(!message.member.hasPermission("KICK_MEMBERS")) return message.channel.send("Insufficient permission.");
     let time = args.join(' ');
-    let validUnlocks = ['end', 'timeout'];
-    if (!time) return message.channel.send('Specify a duration. | **Usage:** `>dio <duration>`')
+    let validUnlocks = ['end', 'return'];
+    if (!time) return message.channel.send('Specify a duration. | **Usage:** `>dio duration`')
 
     if(validUnlocks.includes(time)) {
         message.channel.overwritePermissions(message.guild.id, {

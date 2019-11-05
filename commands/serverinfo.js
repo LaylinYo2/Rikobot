@@ -1,0 +1,31 @@
+const Discord = require("discord.js");
+const moment = require("moment");
+require("moment-duration-format");
+
+module.exports.run = async (bot, message, args) => {
+
+    if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("Insufficient permission.")
+
+    let serverinfoEmbed = new Discord.RichEmbed()
+    .setAuthor(message.guild.name, message.guild.iconURL)
+    .setThumbnail(message.guild.iconURL)
+    .addField(`Owner`, message.guild.owner.user.tag, true)
+    .addField(`Region`, message.guild.region, true)
+    .addField(`Channel Categories`, message.guild.channels.filter(channel => channel.type=="category").size, true)
+    .addField(`Text Channels`, message.guild.channels.size, true)
+    .addField(`Voice Channels`, message.guild.channels.filter(channel => channel.type=="voice").size, true)
+    .addField(`Members`, message.guild.memberCount, true)
+    .addField(`Humans`, message.guild.memberCount - 4, true)
+    .addField(`Bots`, message.guild.members.filter(mem => mem.user.bot === true).size, true)
+    .addField(`Roles`, message.guild.roles.size, true)
+    .setFooter(`ID: ${message.guild.id} | Server Created`)
+    .setTimestamp(message.guild.createdAt)
+    .setColor("#fd8913")
+
+    return message.channel.send(serverinfoEmbed)
+
+}
+
+module.exports.help = {
+    name: "serverinfo"
+}
