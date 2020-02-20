@@ -8,7 +8,7 @@ module.exports.run = async (bot, message, args) => {
     if(!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send("Insufficient permission.");
     let banUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
     if(!banUser) return message.channel.send("Couldn't find user | **Usage:** `>ban @user <reason>`");
-    if(banUser.hasPermission("BAN_MEMBERS")) return message.channel.send(":clown: You tried. :clown:");
+    if(banUser.roles.has("368170751163105280")) return message.channel.send(":clown: You tried. :clown:");
     let banReason = args.join(" ").slice(22);
     if(!banReason) return message.channel.send("Specify a reason | **Usage:** `>ban @user <reason>`")
 
