@@ -7,7 +7,7 @@ module.exports.run = async (bot, message, args) => {
   if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("You have insufficient permissions to execute this command.");
   let muteUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
   if(!muteUser) return message.channel.send("Couldn't find user | **Usage:** `>mute @user <time> <reason>`");
-  if(muteUser.hasPermission("BAN_MEMBERS")) return message.channel.send(":clown: You tried. :clown:");
+  if(muteUser.roles.has("368170751163105280")) return message.channel.send(":clown: You tried. :clown:");
   let reason = args.slice(2).join(" ");
   if(!reason) return message.channel.send("Specify a reason | **Usage:** `>mute @user <time> <reason>`");
 
