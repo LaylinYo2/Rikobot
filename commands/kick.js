@@ -6,7 +6,7 @@ module.exports.run = async (bot, message, args) => {
     if(!message.member.hasPermission("KICK_MEMBERS")) return message.channel.send("Insufficient permission.");
     let kickUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
     if(!kickUser) return message.channel.send("Couldn't find user | **Usage:** `>kick @user <reason>`");
-    if(kickUser.hasPermission("BAN_MEMBERS")) return message.channel.send(":clown: You tried. :clown:");
+    if(kickUser.roles.has("368170751163105280")) return message.channel.send(":clown: You tried. :clown:");
     let kickReason = args.join(" ").slice(22);
     if(!kickReason) return message.channel.send("Specifiy a reason | **Usage:** `>kick @user <reason>`")
 
