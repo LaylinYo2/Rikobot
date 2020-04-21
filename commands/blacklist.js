@@ -27,7 +27,7 @@ module.exports.run = async (bot, message, args) => {
         message.guild.member(blacklistUser).ban(`Blacklist: ${blacklistReason}`);
         console.log(`${blacklistUser.tag} has been notified about their blacklist.`);
     }).catch(function() {
-        message.guild.member(banUser).ban(`Blacklist: ${blacklistReason}`);
+        message.guild.member(blacklistUser).ban(`Blacklist: ${blacklistReason}`);
         console.log(`${blacklistUser.tag} wasn't notified about their blacklist.`)
     })
     blacklistChannel.send(blacklistLogEmbed).then(() => {
