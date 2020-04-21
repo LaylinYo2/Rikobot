@@ -26,7 +26,7 @@ module.exports.run = async (bot, message, args) => {
         message.guild.member(kickUser).kick(kickReason);
         console.log(`${message.member.tag} has been notified about their kick.`);
     }).catch(function() {
-        message.guild.member(kickUser).ban(kickReason);
+        message.guild.member(kickUser).kick(kickReason);
         console.log(`${message.member.tag} wasn't notified about their kick.`)
     })
     kickChannel.send(kickLogEmbed).then(() => {
